@@ -1,6 +1,6 @@
-# electron-cpp-addon
+# electron-cpp-addon-with-mruby
 
-This is a minimal repro to demonstrate an issue with building native addons for Electron that use standard C++ headers and libraries.
+This is a minimal repro to demonstrate an issue with building native addons for Electron that use [mruby](https://github.com/mruby/mruby).
 
 It's based on the simplest ["hello_world" addon](https://github.com/nodejs/node-addon-examples/tree/master/1_hello_world/nan) from [node-addon-examples](https://github.com/nodejs/node-addon-examples) with a one-line change to include the C++11 standard include file `<regex>`.
 
@@ -21,16 +21,16 @@ I would expect this addon to compile without warnings or errors when building fo
 ## Clone This Repo and and Build for Node.js
 
 ```sh
-$ git clone git@github.com:antonycourtney/electron-cpp-addon.git
+$ git clone --recursive git@github.com:tomog105/electron-cpp-addon-with-mruby.git
 [...]
-$ cd electron-cpp-addon
+$ cd electron-cpp-addon-with-mruby
 $ npm install
 ```
 
 The final command should produce output something like the following:
 
 ```sh
-> hello_world@0.0.0 install /private/tmp/electron-cpp-addon
+> hello_world@0.0.0 install /private/tmp/electron-cpp-addon-with-mruby
 > node-gyp rebuild
 
   CXX(target) Release/obj.target/hello/hello.o
@@ -44,8 +44,9 @@ Confirm that this built succesfully:
 
 ```sh
 $ node --version
-v7.1.0
+v8.6.0
 $ node hello.js
+"Welcome to the mRuby World!!"
 world
 $
 ```
